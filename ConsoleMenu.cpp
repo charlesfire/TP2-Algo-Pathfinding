@@ -13,6 +13,10 @@ ConsoleMenu::~ConsoleMenu()
 {
 }
 
+void ConsoleMenu::ClearScreen()const
+{
+    std::cout << string(3000, '\n');
+}
 
 char ConsoleMenu::ReadValidInput(char tabValidInputs[], int nbElements)
 {
@@ -53,31 +57,31 @@ bool ConsoleMenu::ManageSelection(char input)
 
 	switch (input)
 	{
-	case'v':
-	{
-		
-		system("pause");
-		return true;
-	}
-	case's':
-	{
-		
-		system("pause");
-		return true;
-	}
-	case'q':
-	{
-		cout << "A +." << endl;
-		system("pause");
-		return false;
-	}
+        case'v':
+        {
 
-	case'i':
-	{
-		cout << "Caractère invalide" << endl;
-		system("pause");
-		return true;
-	}
+            std::cin.get();
+            return true;
+        }
+        case's':
+        {
+
+            std::cin.get();
+            return true;
+        }
+        case'q':
+        {
+            cout << "A +." << endl;
+            std::cin.get();
+            return false;
+        }
+
+        case'i':
+        {
+            cout << "Caractere invalide" << endl;
+            std::cin.get();
+            return true;
+        }
 	}
 	return false;
 }
@@ -86,13 +90,15 @@ bool ConsoleMenu::ManageSelection(char input)
 void ConsoleMenu::Run()
 {
 	DisplayCredits();
-	system("pause");
+	std::cin.get();
+	ClearScreen();
+
 	char input;
 	char tabValidInputs[] = { 'V', 'v', 'S', 's', 'Q', 'q' };
 	const int NB_ELEMENTS = 6;
 	do
 	{
-		system("cls");
 		input = ReadValidInput(tabValidInputs, NB_ELEMENTS);
-	} while (ManageSelection(input));
+	}
+	while(ManageSelection(input));
 }
