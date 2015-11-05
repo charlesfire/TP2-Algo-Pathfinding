@@ -1,5 +1,6 @@
-#pragma once
-//#include "stdafx.h"
+#ifndef CONSOLEMENU_H
+#define CONSOLEMENU_H
+
 #include <iostream>
 class ConsoleMenu
 {
@@ -14,3 +15,5 @@ private:
 public:
 	void Run();
 };
+
+#endif // CONSOLEMENU_H

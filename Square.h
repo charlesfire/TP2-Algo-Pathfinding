@@ -2,7 +2,7 @@
 
 struct Square final
 {
-	Square();
+	Square(int px,int py,char pvalue,bool pvisited);
 	~Square();
 	int x;
 	int y;
