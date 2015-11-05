@@ -2,20 +2,19 @@
 #define CONSOLEMENU_H
 
 #include <iostream>
+#include "mld.hpp"
 
 class ConsoleMenu
 {
-    public:
-        ConsoleMenu();
-        ~ConsoleMenu();
-    private:
-        char ReadValidInput(char tabValidInputs[], int nbElements);
-        void ClearScreen()const;
-        void DisplayMenu();
-        void DisplayCredits();
-        bool ManageSelection(char input);
-    public:
-        void Run();
+	public:
+		ConsoleMenu();
+		~ConsoleMenu();
+		void Run();
+	private:
+		void DisplayCredits();
+		void DisplayMenu();
+		bool ManageSelection(char input);
+		char ReadValidInput(char tabValidInputs[], int nbElements);
 };
 
 #endif // CONSOLEMENU_H
