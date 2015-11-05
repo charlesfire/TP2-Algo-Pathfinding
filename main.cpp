@@ -1,7 +1,8 @@
 #include <vld.h>
 #include "ConsoleMenu.h"
-void main()
+int main()
 {
 	ConsoleMenu menu;
 	menu.Run();
+	return 0;
 }
