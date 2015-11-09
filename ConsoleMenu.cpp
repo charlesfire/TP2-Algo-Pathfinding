@@ -49,7 +49,7 @@ bool ConsoleMenu::ManageSelection(char input)
 {
 	
 	string mapToStr;
-	string fileName;
+	string fileName = "labyrinthe_exemple.txt";
 	Labyrinth* laby = new Labyrinth(fileName);
 
 	switch (input)
@@ -58,22 +58,26 @@ bool ConsoleMenu::ManageSelection(char input)
 		{
 			mapToStr = laby->ToString();
 			cout << mapToStr;
-			std::cin.get();
+			std::cin.get(); 
+			delete laby;
 			return true;
 		}
 		case's':
 		{
+			delete laby;
 			std::cin.get();
 			return true;
 		}
 		case'q':
 		{
+			delete laby;
 			std::cin.get();
 			return false;
 		}
 
 		case'i':
 		{
+			delete laby;
 			cout << "Caractère invalide" << endl;
 			std::cin.get();
 			return true;

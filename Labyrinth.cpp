@@ -63,10 +63,17 @@ Labyrinth::Labyrinth(const std::string& fileName)
 
 Labyrinth::~Labyrinth()
 {
+	for (int j = 0; j < 20; j++)
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			delete tabSquare[i][j];
+		}
+	}
 }
 
 
-std::string& Labyrinth::ToString()const
+std::string Labyrinth::ToString()const
 {
 	string mapToStr = "";
 	for (size_t j = 0; j < 20; j++)

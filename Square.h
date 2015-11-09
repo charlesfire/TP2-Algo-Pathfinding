@@ -3,7 +3,7 @@
 struct Square final
 {
 	Square(int px, int py, char pvalue, bool pvisited);
-	~Square();
+	~Square() = default;
 	int x;
 	int y;
 	char value;
