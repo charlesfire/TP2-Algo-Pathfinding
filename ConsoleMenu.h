@@ -11,6 +11,7 @@ class ConsoleMenu
 		~ConsoleMenu();
 		void Run();
 	private:
+	    void ClearScreen()const;
 		void DisplayCredits();
 		void DisplayMenu();
 		bool ManageSelection(char input);
