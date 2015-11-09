@@ -68,7 +68,16 @@ Labyrinth::~Labyrinth()
 
 std::string Labyrinth::ToString()
 {
-
+	string mapToStr = "";
+	for (size_t j = 0; j < 20; j++)
+	{
+		for (size_t i = 0; i < 20; i++)
+		{
+			mapToStr += tabSquare[i][j]->value;
+		}
+		mapToStr += "\n";
+	}
+	return mapToStr;
 }
 
 

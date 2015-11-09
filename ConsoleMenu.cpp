@@ -1,5 +1,7 @@
-//#include "stdafx.h"
 #include "ConsoleMenu.h"
+#include "Labyrinth.h"
+#include "WallE.hpp"
+#include <cctype>
 #include <iostream>
 
 using namespace std;
@@ -13,10 +15,73 @@ ConsoleMenu::~ConsoleMenu()
 {
 }
 
-void ConsoleMenu::ClearScreen()const
+
+void ConsoleMenu::Run()
 {
-    std::cout << string(3000, '\n');
+	DisplayCredits();
+	std::cin.get();
+	char input;
+	char tabValidInputs[] = { 'V', 'v', 'S', 's', 'Q', 'q' };
+	const int NB_ELEMENTS = 6;
+	do
+	{
+		system("cls");
+		input = ReadValidInput(tabValidInputs, NB_ELEMENTS);
+	} while (ManageSelection(input));
 }
+
+
+void ConsoleMenu::DisplayCredits()
+{
+	cout << "****************************" << endl;
+	cout << "*    Travail pratique 2    *" << endl;
+	cout << "****************************" << endl;
+}
+
+
+void ConsoleMenu::DisplayMenu()
+{
+	cout << "Visualiser (v)\nSolution (s)\nQuitter (q)" << endl;
+}
+
+
+bool ConsoleMenu::ManageSelection(char input)
+{
+	
+	string mapToStr;
+	string fileName;
+	Labyrinth* laby = new Labyrinth(fileName);
+
+	switch (input)
+	{
+		case'v':
+		{
+			mapToStr = laby->ToString();
+			cout << mapToStr;
+			std::cin.get();
+			return true;
+		}
+		case's':
+		{
+			std::cin.get();
+			return true;
+		}
+		case'q':
+		{
+			std::cin.get();
+			return false;
+		}
+
+		case'i':
+		{
+			cout << "Caractère invalide" << endl;
+			std::cin.get();
+			return true;
+		}
+	}
+	return false;
+}
+
 
 char ConsoleMenu::ReadValidInput(char tabValidInputs[], int nbElements)
 {
@@ -29,76 +94,10 @@ char ConsoleMenu::ReadValidInput(char tabValidInputs[], int nbElements)
 		{
 			if (i % 2 == 0)
 			{
-				return _tolower(userInput);
+				return std::tolower(userInput);
 			}
 			return userInput;
 		}
 	}
 	return 'i';
-}
-
-
-void ConsoleMenu::DisplayMenu()
-{
-	//cout << "Visualiser (v)\nSolution (s)\nQuitter (q)" << endl;
-}
-
-
-void ConsoleMenu::DisplayCredits()
-{
-	cout << "****************************\n*    Travail pratique   *\n****************************" << endl;
-}
-
-
-bool ConsoleMenu::ManageSelection(char input)
-{
-	string mapToStr;
-	string fileName;
-
-	switch (input)
-	{
-        case'v':
-        {
-
-            std::cin.get();
-            return true;
-        }
-        case's':
-        {
-
-            std::cin.get();
-            return true;
-        }
-        case'q':
-        {
-            cout << "A +." << endl;
-            std::cin.get();
-            return false;
-        }
-
-        case'i':
-        {
-            cout << "Caractere invalide" << endl;
-            std::cin.get();
-            return true;
-        }
-	}
-	return false;
-}
-
-
-void ConsoleMenu::Run()
-{
-	DisplayCredits();
-	std::cin.get();
-	ClearScreen();
-
-	char input;
-	char tabValidInputs[] = { 'V', 'v', 'S', 's', 'Q', 'q' };
-	const int NB_ELEMENTS = 6;
-	do
-	{
-		input = ReadValidInput(tabValidInputs, NB_ELEMENTS);
-	}
-	while(ManageSelection(input));
 }
