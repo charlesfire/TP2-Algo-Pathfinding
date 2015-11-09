@@ -66,7 +66,7 @@ Labyrinth::~Labyrinth()
 }
 
 
-std::string Labyrinth::ToString()
+std::string& Labyrinth::ToString()const
 {
 	string mapToStr = "";
 	for (size_t j = 0; j < 20; j++)
@@ -81,7 +81,7 @@ std::string Labyrinth::ToString()
 }
 
 
-Square* Labyrinth::GetStartSquare()
+Square* Labyrinth::GetStartSquare()const
 {
 	return startSquare;
 }
