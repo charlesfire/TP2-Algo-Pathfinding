@@ -27,15 +27,7 @@ void WallE::Explore(const Labyrinth* labyrinth)
     }
 }
 
-std::string WallE::GetSolution()
+std::string WallE::GetSolution()const
 {
-    std::stringstream solution;
-    pathStartToExit.Top();
-    while (pathStartToExit.Top() != nullptr)
-    {
-        solution << "(" << pathStartToExit.Top()->x << ", " << pathStartToExit.Top()->y << ")" << std::endl;
-        pathStartToExit.Pop();
-    }
-
-    return solution.str();
+    return pathStartToExit.ToReverseString();
 }

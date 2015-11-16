@@ -13,7 +13,7 @@ class WallE final
         WallE();
         ~WallE() = default;
         void Explore(const Labyrinth* labyrinth);
-        std::string GetSolution();
+        std::string GetSolution()const;
     private:
         Square* currentSquare;
         Stack<Square> pathStartToExit;

@@ -1,4 +1,5 @@
-
+#ifndef SQUARE_H
+#define SQUARE_H
 
 struct Square final
 {
@@ -13,3 +14,5 @@ struct Square final
 	Square* leftSquare;
 	Square* lowerSquare;
 };
+
+#endif // SQUARE_H

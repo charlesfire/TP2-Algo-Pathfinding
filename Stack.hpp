@@ -1,8 +1,11 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
+#include <algorithm>
+#include <string>
 #include <type_traits>
 #include "Node.hpp"
+#include "Square.h"
 
 template<class T>
 class Stack final
@@ -14,6 +17,7 @@ class Stack final
 		T* Pop();
 		void Push(T* element);
 		T* Top()const;
+		std::string ToReverseString()const;
 	private:
 		Node<T>* first;
 };
@@ -25,9 +29,7 @@ template<class T>
 Stack<T>::~Stack<T>()
 {
 	while (first != nullptr)
-	{
 		Pop();
-	}
 }
 
 template<class T>
@@ -66,6 +68,24 @@ T* Stack<T>::Top()const
 	if (first != nullptr)
 		return first->element;
 	return nullptr;
+}
+
+template<class T>
+std::string Stack<T>::ToReverseString()const
+{
+    std::vector<std::string> strTab;
+	Node<T>* temp = first;
+	while (temp != nullptr)
+    {
+        strTab.push_back("(" + std::to_string(temp->element->x) + ", " + std::to_string(temp->element->y) + ")\n");
+        temp = temp->next;
+    }
+    std::reverse(strTab.begin(), strTab.end());
+
+    std::string str = "";
+    for (auto subStr : strTab)
+        str += subStr;
+    return str;
 }
 
 #endif // STACK_HPP
