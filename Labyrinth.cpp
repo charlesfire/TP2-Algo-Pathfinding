@@ -33,6 +33,7 @@ Labyrinth::Labyrinth(const std::string& fileName)
 		}
 		y++;
 	}
+
 	for (int j = 0; j < 20; j++)
 	{
 		for (int i = 0; i < 20; i++)
@@ -53,9 +54,12 @@ Labyrinth::Labyrinth(const std::string& fileName)
 			{
 				tabSquare[i][j]->rightSquare = tabSquare[i + 1][j];
 			}
+
+            if (tabSquare[i][j]->value == 'D')
+                startSquare = tabSquare[i][j];
 		}
 	}
-	startSquare = tabSquare[0][0];
+
 	streamInput.clear();
 	streamInput.close();
 }

@@ -2,7 +2,6 @@
 #define WALLE_HPP
 
 #include <string>
-#include "mld.hpp"
 #include "Stack.hpp"
 
 class Labyrinth;
@@ -14,10 +13,10 @@ class WallE final
         WallE();
         ~WallE() = default;
         void Explore(const Labyrinth* labyrinth);
-        std::string& GetSolution()const;
+        std::string GetSolution();
     private:
         Square* currentSquare;
-        Stack<Square*> pathStartToExit;
+        Stack<Square> pathStartToExit;
 };
 
 #endif // WALLE_HPP

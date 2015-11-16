@@ -1,8 +1,9 @@
 #include "ConsoleMenu.h"
-#include "Labyrinth.h"
-#include "WallE.hpp"
 #include <cctype>
 #include <iostream>
+#include <limits>
+#include "Labyrinth.h"
+#include "WallE.hpp"
 
 using namespace std;
 
@@ -27,7 +28,8 @@ void ConsoleMenu::Run()
 	{
 		system("cls");
 		input = ReadValidInput(tabValidInputs, NB_ELEMENTS);
-	} while (ManageSelection(input));
+	}
+	while (ManageSelection(input));
 }
 
 
@@ -47,43 +49,34 @@ void ConsoleMenu::DisplayMenu()
 
 bool ConsoleMenu::ManageSelection(char input)
 {
-	
+
 	string mapToStr;
 	string fileName = "labyrinthe_exemple.txt";
-	Labyrinth* laby = new Labyrinth(fileName);
+	Labyrinth laby(fileName);
+	WallE wallE;
+	bool quit = false;
 
 	switch (input)
 	{
 		case'v':
-		{
-			mapToStr = laby->ToString();
+			mapToStr = laby.ToString();
 			cout << mapToStr;
-			std::cin.get(); 
-			delete laby;
-			return true;
-		}
+			break;
 		case's':
-		{
-			delete laby;
-			std::cin.get();
-			return true;
-		}
+		    wallE.Explore(&laby);
+		    std::cout << wallE.GetSolution() << std::endl;
+			break;
 		case'q':
-		{
-			delete laby;
-			std::cin.get();
-			return false;
-		}
-
+			quit = true;
+			break;
 		case'i':
-		{
-			delete laby;
 			cout << "Caractère invalide" << endl;
-			std::cin.get();
-			return true;
-		}
+			break;
 	}
-	return false;
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+	return !quit;
 }
 
 
