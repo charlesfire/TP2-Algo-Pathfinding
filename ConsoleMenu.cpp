@@ -6,17 +6,23 @@
 #include "WallE.hpp"
 
 using namespace std;
-
+/// <summary>
+/// Initializes a new instance of the <see cref="ConsoleMenu"/> class.
+/// </summary>
 ConsoleMenu::ConsoleMenu()
 {
 }
 
-
+/// <summary>
+/// Finalizes an instance of the <see cref="ConsoleMenu"/> class.
+/// </summary>
 ConsoleMenu::~ConsoleMenu()
 {
 }
 
-
+/// <summary>
+/// Runs this instance.
+/// </summary>
 void ConsoleMenu::Run()
 {
 	DisplayCredits();
@@ -32,7 +38,9 @@ void ConsoleMenu::Run()
 	while (ManageSelection(input));
 }
 
-
+/// <summary>
+/// Affiche les credits.
+/// </summary>
 void ConsoleMenu::DisplayCredits()
 {
 	cout << "****************************" << endl;
@@ -40,18 +48,23 @@ void ConsoleMenu::DisplayCredits()
 	cout << "****************************" << endl;
 }
 
-
+/// <summary>
+/// Affiche le menu.
+/// </summary>
 void ConsoleMenu::DisplayMenu()
 {
 	cout << "Visualiser (v)\nSolution (s)\nQuitter (q)" << endl;
 }
 
-
+/// <summary>
+/// Gère les opérations à faire selon la sélection.
+/// </summary>
+/// <param name="input">L'input sélectionné.</param>
+/// <returns>Valeur bool si on quitte</returns>
 bool ConsoleMenu::ManageSelection(char input)
 {
-
-	string mapToStr;
-	string fileName = "labyrinthe_exemple.txt";
+	string mapToStr; // La map en string
+	string fileName = "labyrinthe_exemple1.txt"; // Le nom du fichier texte
 	Labyrinth laby(fileName);
 	WallE wallE;
 	bool quit = false;
@@ -70,7 +83,7 @@ bool ConsoleMenu::ManageSelection(char input)
 			quit = true;
 			break;
 		case'i':
-			cout << "Caractère invalide" << endl;
+			cout << "Caractere invalide" << endl;
 			break;
 	}
 
@@ -79,7 +92,12 @@ bool ConsoleMenu::ManageSelection(char input)
 	return !quit;
 }
 
-
+/// <summary>
+/// Lit l'input valide.
+/// </summary>
+/// <param name="tabValidInputs">Le tableau d'inputs valides.</param>
+/// <param name="nbElements">le nb d'éléments.</param>
+/// <returns>L'input valide en minuscule ou i si invalide</returns>
 char ConsoleMenu::ReadValidInput(char tabValidInputs[], int nbElements)
 {
 	DisplayMenu();
