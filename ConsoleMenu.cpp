@@ -1,5 +1,6 @@
 #include "ConsoleMenu.h"
 #include <cctype>
+#include <fstream>
 #include <iostream>
 #include <limits>
 #include "Labyrinth.h"
@@ -64,20 +65,33 @@ void ConsoleMenu::DisplayMenu()
 bool ConsoleMenu::ManageSelection(char input)
 {
 	string mapToStr; // La map en string
-	string fileName = "labyrinthe_exemple1.txt"; // Le nom du fichier texte
-	Labyrinth laby(fileName);
-	WallE wallE;
+	string fileName = "labyrinthe_exemple2.txt"; // Le nom du fichier texte
+	ifstream streamInput;
+	bool fileExist = true;
 	bool quit = false;
-
-	switch (input)
+	streamInput.open(fileName);
+	if (!streamInput)
 	{
+		//	string exceptionCaption = "Le fichier " + fileName + " n'existe pas.";
+		//	throw invalid_argument(exceptionCaption);
+		fileExist = false;
+		quit = true;
+	}
+	if (fileExist)
+	{
+		Labyrinth laby(fileName);
+		WallE wallE;
+		
+
+		switch (input)
+		{
 		case'v':
 			mapToStr = laby.ToString();
 			cout << mapToStr;
 			break;
 		case's':
-		    wallE.Explore(&laby);
-		    std::cout << wallE.GetSolution() << std::endl;
+			wallE.Explore(&laby);
+			std::cout << wallE.GetSolution() << std::endl;
 			break;
 		case'q':
 			quit = true;
@@ -85,8 +99,13 @@ bool ConsoleMenu::ManageSelection(char input)
 		case'i':
 			cout << "Caractere invalide" << endl;
 			break;
+		}
 	}
-
+	else
+	{
+		cout << "Le fichier " + fileName + " n'existe pas." << endl;
+		cout << "Le programme va se fermer." << endl;
+	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
 	return !quit;
