@@ -7,12 +7,15 @@
 class Labyrinth;
 class Square;
 
+/// <summary>
+/// Classe représentant un robot pouvant trouver un chemin dans un labyrinthe.
+/// </summary>
 class WallE final
 {
     public:
         WallE();
-        ~WallE() = default;
-        void Explore(const Labyrinth* labyrinth);
+        ~WallE();		
+        void Explore(const Labyrinth* labyrinth);		
         std::string GetSolution()const;
     private:
         Square* currentSquare;
