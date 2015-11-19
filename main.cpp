@@ -1,5 +1,6 @@
-//#include <vld.h>
+#include <vld.h>
 #include "ConsoleMenu.h"
+
 int main()
 {
 	ConsoleMenu menu;
