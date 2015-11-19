@@ -4,7 +4,7 @@
 #include <string>
 
 class Square;
-
+//La map du labyrinth
 class Labyrinth final
 {
 	public:

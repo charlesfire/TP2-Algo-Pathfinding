@@ -1,6 +1,6 @@
 #ifndef SQUARE_H
 #define SQUARE_H
-
+//Une case du labyrinth
 struct Square final
 {
 	Square(int px, int py, char pvalue, bool pvisited); 

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "mld.hpp"
-
+//Gère l'affichage du menu
 class ConsoleMenu
 {
 	public:
